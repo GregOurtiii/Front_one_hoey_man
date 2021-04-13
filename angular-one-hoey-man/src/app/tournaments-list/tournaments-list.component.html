@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Pseudo joueur</h2>
+            <ul>
+                <app-tournaments *ngFor="let tournament of tournaments"
+                    [nom]="tournament.nom"
+                    [nbParticipant]="tournament.nbParticipant">
+                </app-tournaments>
+            </ul>
+            <button class="btn btn-success" (click)="onCreate()">Creer</button>
+        </div>
+    </div>
+</div>

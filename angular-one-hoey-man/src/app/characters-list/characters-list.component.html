@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Pseudo joueur</h2>
+            <ul>
+                <app-characters *ngFor="let character of characters"
+                    [nom]="character.nom"
+                    [classe]="character.classe">
+                </app-characters>
+            </ul>
+            <button class="btn btn-success" (click)="onCreate()">Creer</button>
+        </div>
+    </div>
+</div>
