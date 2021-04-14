@@ -12,12 +12,15 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
 import { TournamentsListComponent } from './tournaments-list/tournaments-list.component';
 import { CreateTournamentsComponent } from './create-tournaments/create-tournaments.component';
 
+import { AuthService } from './services/auth.service'
+import { AuthGuardService } from './services/authGuard.service';
+
 const appRoutes : Routes = [ {path: "", component: LoginComponent}, 
                              {path: "register", component: RegisterComponent},
-                             {path: "homepage", component: CharactersListComponent},
-                             {path: "createCharacter", component: CreateCharactersComponent},
-                             {path: "tournaments", component : TournamentsListComponent},
-                             {path: "createTournaments", component : CreateTournamentsComponent}]
+                             {path: "homepage", canActivate : [AuthGuardService], component: CharactersListComponent},
+                             {path: "createCharacter", canActivate : [AuthGuardService], component: CreateCharactersComponent},
+                             {path: "tournaments", canActivate : [AuthGuardService], component : TournamentsListComponent},
+                             {path: "createTournaments", canActivate : [AuthGuardService], component : CreateTournamentsComponent}]
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ const appRoutes : Routes = [ {path: "", component: LoginComponent},
     BrowserModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    AuthGuardService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
