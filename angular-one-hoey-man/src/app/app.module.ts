@@ -14,19 +14,41 @@ import { TournamentsComponent } from './tournaments/tournaments.component';
 import { TournamentsListComponent } from './tournaments-list/tournaments-list.component';
 import { CreateTournamentsComponent } from './create-tournaments/create-tournaments.component';
 
-import { AuthService } from './services/auth.service'
+import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/authGuard.service';
 import { TournamentsLobbyComponent } from './tournaments-lobby/tournaments-lobby.component';
-import { User } from './services/user.service';
+import { User, UserUsed } from './services/user.service';
 import { Character } from './services/character.service';
 
-const appRoutes : Routes = [ {path: "", component: LoginComponent}, 
-                             {path: "register", component: RegisterComponent},
-                             {path: "homepage", canActivate : [AuthGuardService], component: CharactersListComponent},
-                             {path: "characters/create", canActivate : [AuthGuardService], component: CreateCharactersComponent},
-                             {path: "characters/:idCharacter/tournaments", canActivate : [AuthGuardService], component : TournamentsListComponent},
-                             {path: "tournaments/create", canActivate : [AuthGuardService], component : CreateTournamentsComponent},
-                             {path: "characters/:idCharacter/tournaments/:idTournament", canActivate : [AuthGuardService], component : TournamentsLobbyComponent}]
+const appRoutes: Routes = [
+  { path: '', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  {
+    path: 'homepage',
+    canActivate: [AuthGuardService],
+    component: CharactersListComponent,
+  },
+  {
+    path: 'characters/create',
+    canActivate: [AuthGuardService],
+    component: CreateCharactersComponent,
+  },
+  {
+    path: 'characters/:idCharacter/tournaments',
+    canActivate: [AuthGuardService],
+    component: TournamentsListComponent,
+  },
+  {
+    path: 'tournaments/create',
+    canActivate: [AuthGuardService],
+    component: CreateTournamentsComponent,
+  },
+  {
+    path: 'characters/:idCharacter/tournaments/:idTournament',
+    canActivate: [AuthGuardService],
+    component: TournamentsLobbyComponent,
+  },
+];
 
 @NgModule({
   declarations: [
@@ -37,7 +59,7 @@ const appRoutes : Routes = [ {path: "", component: LoginComponent},
     CharactersListComponent,
     CreateCharactersComponent,
     TournamentsComponent,
-    TournamentsListComponent
+    TournamentsListComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,12 +67,7 @@ const appRoutes : Routes = [ {path: "", component: LoginComponent},
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
   ],
-  providers: [
-    AuthService,
-    AuthGuardService,
-    User,
-    Character
-  ],
-  bootstrap: [AppComponent]
+  providers: [AuthService, AuthGuardService, User, Character, UserUsed],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
