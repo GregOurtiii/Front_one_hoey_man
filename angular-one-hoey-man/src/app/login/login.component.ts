@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
 import { AuthService } from '../services/auth.service';
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core';
+import { User } from '../services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -10,8 +13,10 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
 
   authStatus : boolean;
+  username = "";
+  password = "";
 
-  constructor(private router : Router, private authService : AuthService) { }
+  constructor(private router : Router, private authService : AuthService, private http: HttpClient, private user : User) { }
 
   ngOnInit(): void {
     this.authStatus = this.authService.isAuth;
@@ -22,8 +27,9 @@ export class LoginComponent implements OnInit {
   }
 
    onLogin(){
-     this.authService.signIn();//.then(() => {})
-     this.authStatus = this.authService.isAuth;
-     this.router.navigate(["homepage"]);
+     this.authService.signIn(this.username, this.password).then(() => {
+      this.authStatus = this.authService.isAuth;
+      this.router.navigate(["homepage"]);
+     });
    }
 }

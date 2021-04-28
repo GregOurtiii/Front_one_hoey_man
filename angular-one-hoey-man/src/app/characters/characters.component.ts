@@ -17,7 +17,7 @@ export class CharactersComponent implements OnInit {
   }
 
   onCharacterSelected(){
-    this.router.navigate(["tournaments"]);
+    this.router.navigate(["characters/" + this.nom + "/tournaments"]);
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tournaments-list',
@@ -20,14 +20,16 @@ export class TournamentsListComponent implements OnInit {
     }
   ];
 
-  constructor(private router : Router) { }
+  constructor(private router : Router, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    const idCharacter = this.route.snapshot.params["idCharacter"];
+    console.log(idCharacter);
   }
 
   onCreate(){
-    console.log(this.tournaments[0].nbParticipant);
-    this.router.navigate(["createTournaments"]);
+    //remodeler le lien pour conserver l'id character
+    this.router.navigate(["tournaments/create"]);
   }
 
 }

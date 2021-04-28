@@ -1,12 +1,33 @@
-<label for="username">Nom d'utilisateur :</label>
-<input id="username" type="text"/>
+<section>
+    
 
-<br/>
-
-<label for="mdp">Mot de passe :</label>
-<input id="mdp" type="password"/>
-
-<br/>
-
-<button class="btn btn-success" (click)="onLogin()">Se connecter</button>
-<button class="btn btn-success" (click)="onRegister()">S'inscrire</button>
+    <div id = "total" >
+    <div id = "form" >
+    <div class="row justify-content-md-center">
+    <label for="username">Nom d'utilisateur :</label>
+    </div>
+    
+    <div class="row justify-content-md-center">
+    <input id="username" class="form-control" [(ngModel)]="username" type="text"/>
+    </div>
+    
+    
+    <div class="row justify-content-md-center">
+    <label for="mdp">Mot de passe :</label>
+    </div>
+    
+    <div  class="row justify-content-md-center">
+    <input id="mdp" class="form-control" [(ngModel)]="username" type="password"/>
+    </div>
+    </div>
+    
+    <div id = "buttonC" class="row justify-content-md-center">
+    <button class="btn btn-success" (click)="onLogin()">Se connecter</button>
+    </div>
+    <label for="">pas inscrit ?</label>
+    <div id="buttonI" class="row justify-content-md-center">
+    <button class="btn btn-success" (click)="onRegister()">S'inscrire</button>
+    </div>
+    </div>
+    
+</section>

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,13 +16,17 @@ import { CreateTournamentsComponent } from './create-tournaments/create-tourname
 
 import { AuthService } from './services/auth.service'
 import { AuthGuardService } from './services/authGuard.service';
+import { TournamentsLobbyComponent } from './tournaments-lobby/tournaments-lobby.component';
+import { User } from './services/user.service';
+import { Character } from './services/character.service';
 
 const appRoutes : Routes = [ {path: "", component: LoginComponent}, 
                              {path: "register", component: RegisterComponent},
                              {path: "homepage", canActivate : [AuthGuardService], component: CharactersListComponent},
-                             {path: "createCharacter", canActivate : [AuthGuardService], component: CreateCharactersComponent},
-                             {path: "tournaments", canActivate : [AuthGuardService], component : TournamentsListComponent},
-                             {path: "createTournaments", canActivate : [AuthGuardService], component : CreateTournamentsComponent}]
+                             {path: "characters/create", canActivate : [AuthGuardService], component: CreateCharactersComponent},
+                             {path: "characters/:idCharacter/tournaments", canActivate : [AuthGuardService], component : TournamentsListComponent},
+                             {path: "tournaments/create", canActivate : [AuthGuardService], component : CreateTournamentsComponent},
+                             {path: "characters/:idCharacter/tournaments/:idTournament", canActivate : [AuthGuardService], component : TournamentsLobbyComponent}]
 
 @NgModule({
   declarations: [
@@ -35,11 +41,15 @@ const appRoutes : Routes = [ {path: "", component: LoginComponent},
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   providers: [
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    User,
+    Character
   ],
   bootstrap: [AppComponent]
 })

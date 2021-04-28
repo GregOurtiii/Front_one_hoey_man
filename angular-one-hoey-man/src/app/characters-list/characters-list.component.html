@@ -1,14 +1,22 @@
 <div class="container">
     <div class="row">
+        <section>
+
         <div class="col-xs-12">
+            
             <h2>Pseudo joueur</h2>
-            <ul>
+            
+            <div class="d-grid gap-2" >
                 <app-characters *ngFor="let character of characters"
                     [nom]="character.nom"
                     [classe]="character.classe">
                 </app-characters>
-            </ul>
-            <button class="btn btn-success" (click)="onCreate()">Creer</button>
+            </div>
+            <div class="text-center">
+            <button class="btn btn-dark" (click)="onCreate()"><i class="fa fa-plus"
+                aria-hidden="true"></i> Creer</button>
+            </div>
         </div>
+    </section>
     </div>
 </div>

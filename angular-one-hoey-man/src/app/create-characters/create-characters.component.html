@@ -1,21 +1,28 @@
 <div class="container">
     <div class="row">
+    <section>
         <div class="col-xs-12">
+            <div>
             <h2>Pseudo joueur</h2>
             <label for="nomPerso">Nom :</label>
             <input id="nomPerso" type="text"/>
-
-            <br/>
-
+            </div>
+            
+            <div id="select">
             <select>
                 <option *ngFor="let classe of classes" [value]="classe">{{classe}}</option>
             </select>
-            <br/>
+            
             <select>
                 <option *ngFor="let equipement of equipements" [value]="equipement">{{equipement}}</option>
             </select>
-            <br/>
-            <button class="btn-success" (click)="onCreateFinish()">Creer</button>
+            </div>
+            <div id="button">
+                <button class="btn btn-dark" (click)="onCreateFinish()"><i class="fa fa-plus"
+                    aria-hidden="true"></i> Creer</button>
+                
+            </div>
         </div>
+    </section>
     </div>
 </div>
